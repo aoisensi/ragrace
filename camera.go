@@ -1,14 +1,11 @@
 package ragrace
 
-import "image"
-
 type Camera struct {
-	size image.Rectangle
+	ResWidth, ResHeight  int
+	Width, Height, Depth float64
+	ViewPoint            Vector
 }
 
-func (c *Camera) SetSize(width, height int) {
-	c.size = image.Rectangle{
-		Min: image.ZP,
-		Max: image.Point{X: width, Y: height},
-	}
+func NewCamera() *Camera {
+	return new(Camera)
 }
