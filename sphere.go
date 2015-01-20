@@ -1,5 +1,7 @@
 package ragrace
 
+import "math"
+
 type Sphere struct {
 	Object
 	R float64
@@ -9,6 +11,20 @@ func (s *Sphere) Collision(ray Ray) float64 {
 	a := ray.D.Dot(Vector(ray.D))
 	b := ray.S.Dot(Vector(ray.D)) * 2.0
 	c := ray.S.Dot(ray.S) - s.R*s.R
-	//fmt.Printf("%v", ray)
-	return b*b - 4*a*c
+	d := b*b - 4*a*c
+	if d < 0.0 {
+		return math.NaN()
+	}
+	t1 := (-b + math.Sqrt(d)) / (2 * a)
+	t2 := (-b - math.Sqrt(d)) / (2 * a)
+	if t1 < 0.0 {
+		if t2 < 0.0 {
+			return math.NaN()
+		}
+		return t1
+	}
+	if t2 < 0.0 {
+		return t2
+	}
+	return math.Min(t1, t2)
 }
