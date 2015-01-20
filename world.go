@@ -27,18 +27,23 @@ func (w *World) Rendering() (image.Image, error) {
 	cam := w.cam
 	img := image.NewRGBA(image.Rect(0, 0, cam.ResWidth, cam.ResHeight))
 	xs := makeGridSlice(cam.ResWidth, cam.Width)
-	ys := makeGridSlice(cam.ResHeight, cam.Height)
+	ys := makeGridSlice(cam.ResHeight, -cam.Height)
 	for px, x := range xs {
 		for py, y := range ys {
 			to := Vector{x, y, cam.Depth}.Normalizing()
-			rr := w.obj.Collision(Ray{cam.ViewPoint, to})
-			if rr >= 0.0 {
-				img.SetRGBA(px, py, color.RGBA{255, 0, 0, 255})
-			}
+			img.Set(px, py, w.emmitRay(Ray{cam.ViewPoint, to}))
 		}
 	}
 
 	return img, nil
+}
+
+func (w *World) emmitRay(ray Ray) color.Color {
+	r := w.obj.Collision(ray)
+	if isNaN(r) {
+		return color.RGBA{}
+	}
+	return color.RGBA{255, 0, 0, 255}
 }
 
 func makeGridSlice(res int, width float64) []float64 {

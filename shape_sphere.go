@@ -13,13 +13,13 @@ func (s *Sphere) Collision(ray Ray) float64 {
 	c := ray.S.Dot(ray.S) - s.R*s.R
 	d := b*b - 4*a*c
 	if d < 0.0 {
-		return math.NaN()
+		return fNaN
 	}
 	t1 := (-b + math.Sqrt(d)) / (2 * a)
 	t2 := (-b - math.Sqrt(d)) / (2 * a)
 	if t1 < 0.0 {
 		if t2 < 0.0 {
-			return math.NaN()
+			return fNaN
 		}
 		return t1
 	}
