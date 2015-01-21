@@ -2,12 +2,12 @@ package ragrace
 
 import "math"
 
-type Sphere struct {
-	Object
+type ShapeSphere struct {
+	Shape
 	R float64
 }
 
-func (s *Sphere) Collision(ray Ray) float64 {
+func (s *ShapeSphere) Collision(ray Ray) float64 {
 	a := ray.D.Dot(Vector(ray.D))
 	b := ray.S.Dot(Vector(ray.D)) * 2.0
 	c := ray.S.Dot(ray.S) - s.R*s.R
@@ -27,4 +27,8 @@ func (s *Sphere) Collision(ray Ray) float64 {
 		return t2
 	}
 	return math.Min(t1, t2)
+}
+
+func (s *ShapeSphere) Visual(v Vector) Material {
+	return DefaultMaterial
 }

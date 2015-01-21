@@ -18,7 +18,7 @@ func main() {
 	c.Height = 2.0
 	w.SetCamera(c)
 
-	s := &rg.Sphere{R: 1.0}
+	s := &rg.ShapeSphere{R: 1.0}
 	sl := rg.NewLocate(s)
 	sl.Loc = rg.Vector{0.0, 0.0, 5.0}
 

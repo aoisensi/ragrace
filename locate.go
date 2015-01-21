@@ -1,12 +1,12 @@
 package ragrace
 
 type Locate struct {
-	Object
-	Obj Object
+	Shape
+	Obj Shape
 	Loc Vector
 }
 
-func NewLocate(obj Object) *Locate {
+func NewLocate(obj Shape) *Locate {
 	l := new(Locate)
 	l.Obj = obj
 	return l

@@ -3,7 +3,7 @@ package ragrace
 import "math"
 
 type Group struct {
-	Object
+	Shape
 	objs []Object
 }
 
@@ -22,16 +22,16 @@ func NewGroupSlice(objs []Object) *Group {
 func (g *Group) Collision(ray Ray) float64 {
 	r := fNaN
 	for _, o := range g.objs {
-		if o == nil {
-			continue
-		}
-		s := o.Collision(ray)
-		if isNaN(r) {
-			r = s
-			continue
-		}
-		if !isNaN(s) {
-			r = math.Min(r, s)
+		switch t := o.(type) {
+		case Shape:
+			s := t.Collision(ray)
+			if isNaN(r) {
+				r = s
+				continue
+			}
+			if !isNaN(s) {
+				r = math.Min(r, s)
+			}
 		}
 	}
 

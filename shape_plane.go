@@ -1,17 +1,17 @@
 package ragrace
 
-type Plane struct {
-	Object
+type ShapePlane struct {
+	Shape
 	N NVector
 }
 
-func NewPlane(n NVector) *Plane {
-	p := new(Plane)
+func NewPlane(n NVector) *ShapePlane {
+	p := new(ShapePlane)
 	p.N = n
 	return p
 }
 
-func (p *Plane) Collision(ray Ray) float64 {
+func (p *ShapePlane) Collision(ray Ray) float64 {
 	m := ray.D.Dot(Vector(p.N))
 	if m > 0.0 {
 		return fNaN

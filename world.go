@@ -6,7 +6,7 @@ import (
 )
 
 type World struct {
-	obj Object
+	obj Shape
 	cam *Camera
 }
 
@@ -19,7 +19,7 @@ func (w *World) SetCamera(camera *Camera) {
 	w.cam = camera
 }
 
-func (w *World) SetObject(object Object) {
+func (w *World) SetObject(object Shape) {
 	w.obj = object
 }
 
