@@ -26,7 +26,7 @@ func main() {
 	pl := rg.NewLocate(p)
 	pl.Loc = rg.Vector{0.0, -1.0, 0.0}
 
-	w.SetObject(rg.NewGroupSlice([]rg.Object{sl, pl}))
+	w.SetObject(rg.NewGroupSlice([]rg.Shape{sl, pl}))
 
 	img, err := w.Rendering()
 	if err != nil {

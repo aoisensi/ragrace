@@ -18,3 +18,7 @@ func (p *ShapePlane) Collision(ray Ray) float64 {
 	}
 	return ray.S.Dot(Vector(p.N)) / m
 }
+
+func (s *ShapePlane) Visual(v Vector) Material {
+	return DefaultMaterial
+}

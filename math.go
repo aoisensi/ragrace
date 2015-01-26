@@ -3,9 +3,10 @@ package ragrace
 import "math"
 
 var (
-	fNaN  = math.NaN()
-	fInfP = math.Inf(+1)
-	fInfN = math.Inf(-1)
+	fNaN     = math.NaN()
+	fInfP    = math.Inf(+1)
+	fInfN    = math.Inf(-1)
+	fEpsilon = 0.00000001
 )
 
 func isNaN(x float64) bool {

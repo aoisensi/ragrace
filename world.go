@@ -6,8 +6,9 @@ import (
 )
 
 type World struct {
-	obj Shape
-	cam *Camera
+	obj    Shape
+	cam    *Camera
+	lights []Light
 }
 
 func NewWorld() *World {
@@ -36,6 +37,14 @@ func (w *World) Rendering() (image.Image, error) {
 	}
 
 	return img, nil
+}
+
+func (w *World) SetLights(l []Light) {
+	w.lights = l
+}
+
+func (w *World) emmitLight(mat Material) Color {
+	return NewGray(1.0)
 }
 
 func (w *World) emmitRay(ray Ray) color.Color {

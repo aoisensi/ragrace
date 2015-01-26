@@ -4,16 +4,16 @@ import "math"
 
 type Group struct {
 	Shape
-	objs []Object
+	objs []Shape
 }
 
 func NewGroup(size int) *Group {
 	g := new(Group)
-	g.objs = make([]Object, size)
+	g.objs = make([]Shape, size)
 	return g
 }
 
-func NewGroupSlice(objs []Object) *Group {
+func NewGroupSlice(objs []Shape) *Group {
 	g := new(Group)
 	g.objs = objs
 	return g
